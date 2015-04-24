@@ -9,9 +9,5 @@
  */
 angular.module('mindgamesApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.scores = [1, 2];
   });

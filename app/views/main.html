@@ -1,10 +1,30 @@
-<div id="main_container">
-  <div id="main_card" class="shadow">
-    <div class="face">
-      <img src="images/calvinhobbes.jpeg" height="242" width="242"/>
+<script id="columntemplate" type="text/ng-template">
+    <div class="col-md-4">
+      <div id="main_container">
+      <div id="main_card" class="shadow">
+        <div class="face">
+          <img src="images/calvinhobbes.jpeg" height="142" width="142"/>
+        </div>
+        <div class="back face">
+          <p>Flip style</p>
+        </div>
+      </div>
+      </div>
     </div>
-    <div class="back face">
-      <p>Flip style</p>
-    </div>
+</script>
+
+<script id="rowtemplate" type="text/ng-template">
+  <div class="row">
+    <div ng-repeat="score in scores" ng-include="'columntemplate'"></div>  
   </div>
+</script>
+
+<div style="margin-top:20px;">
+  <div ng-repeat="score in scores" ng-include="'rowtemplate'"></div>
 </div>
+      
+
+
+
+
+

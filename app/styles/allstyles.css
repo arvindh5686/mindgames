@@ -1,8 +1,8 @@
 #main_container {
   position: relative;
   margin: 10px auto;
-  width: 450px;
-  height: 281px;
+  width: 150px;
+  height: 150px;
   z-index: 1;
 }
 
