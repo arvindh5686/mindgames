@@ -3,10 +3,10 @@
       <div id="main_container">
       <div id="main_card" class="shadow">
         <div class="face">
-          <img src="images/calvinhobbes.jpeg" height="142" width="142"/>
+          <img src="images/{{master[m][n]}}" height="142" width="142"/>
         </div>
         <div class="back face">
-          <p>Flip style</p>
+          <p>Flip style</p>{{master[m][n]}}
         </div>
       </div>
       </div>
@@ -15,12 +15,12 @@
 
 <script id="rowtemplate" type="text/ng-template">
   <div class="row">
-    <div ng-repeat="score in scores" ng-include="'columntemplate'"></div>  
+    <div ng-repeat="n in range(0,max)" ng-include="'columntemplate'"></div>  
   </div>
 </script>
 
 <div style="margin-top:20px;">
-  <div ng-repeat="score in scores" ng-include="'rowtemplate'"></div>
+  <div ng-repeat="m in range(0,max)" ng-include="'rowtemplate'">{{m}}</div>
 </div>
       
 
