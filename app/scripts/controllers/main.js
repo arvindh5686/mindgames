@@ -11,14 +11,21 @@ angular.module('mindgamesApp')
   .controller('MainCtrl', function ($scope) {
     $scope.max = 1;
     $scope.master = [];
-    $scope.scores = [0, 1, 2, 3];
-    var masterIndex = 0
+    $scope.rowColCount = 2
+    $scope.arrNum = [0, 1, 2, 3];
+    var masterIndex = 0;
+    $scope.test = [0,1];
     
     var map = {
     	'0' : 'batman.gif',
     	'1' : 'courage.gif',
     	'2' : 'dexter.gif',
-    	'3' : 'calvinhobbes.jpeg'
+    	'3' : 'calvinhobbes.jpeg',
+    	'4' : 'batman.gif',
+    	'5' : 'courage.gif',
+    	'6' : 'dexter.gif',
+    	'7' : 'calvinhobbes.jpeg',
+    	'8' : 'calvinhobbes.jpeg'
     };
 
     $scope.clickme = function() {
@@ -50,10 +57,18 @@ angular.module('mindgamesApp')
     	return arr;
     }
 
-    
+    function create1DArray() {
+    	$scope.arrNum = [];
+    	$scope.test = [];
+    	var len = $scope.rowColCount;
+    	for(var i=0;i<len;i++) $scope.test.push(i);
+    	for(var i=0;i<len * len;i++) $scope.arrNum.push(i);
+    }
+
     function create2DArray(shuffledArray) {
     	console.log(shuffledArray);
     	var count = 0;
+    	$scope.master = [];
     	for(var i=0;i<=$scope.max;i++) {
     		var arr = [];
     		for(var j=0;j<=$scope.max;j++) {
@@ -61,8 +76,6 @@ angular.module('mindgamesApp')
     		}
     		$scope.master.push(arr);
     	}
-
-    	console.log($scope.master);
     }
 
     function flipImages(containersArr, index) {
@@ -95,10 +108,18 @@ angular.module('mindgamesApp')
     }
 
     function renderDraggableImage() {
+    	if(masterIndex == $scope.arrNum.length) {
+    		$scope.max++;
+    		masterIndex = 0;
+    		$scope.rowColCount++;
+    		create1DArray();
+    		var arr = shuffleArray($scope.arrNum);
+   			create2DArray(arr);
+    	}
     	$('#dragDropImg').find('img').attr("src","images/" + map[masterIndex]);
     	$('#dragDropImg').find('img').attr("name", map[masterIndex])
     }
 
-   	var arr = shuffleArray($scope.scores);
+   	var arr = shuffleArray($scope.arrNum);
    	create2DArray(arr);
   });

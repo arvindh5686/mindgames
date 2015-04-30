@@ -15,12 +15,12 @@
 
 <script id="rowtemplate" type="text/ng-template">
   <div class="row">
-    <div ng-repeat="n in range(0,max)" ng-include="'columntemplate'"></div>  
+    <div ng-repeat="n in test" ng-include="'columntemplate'"></div>  
   </div>
 </script>
 
 <div style="margin-top:20px;">
-  <div ng-repeat="m in range(0,max)" ng-include="'rowtemplate'">{{m}}</div>
+  <div ng-repeat="m in test" ng-include="'rowtemplate'">{{m}}</div>
 </div>
 
 <button ng-click="clickme()">Click me</button>
