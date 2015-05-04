@@ -15,12 +15,12 @@
 
 <script id="rowtemplate" type="text/ng-template">
   <div class="row">
-    <div ng-repeat="n in test.arr" ng-include="'columntemplate'">{{n}}</div>  
+    <div ng-repeat="n in rowColIndex.arr" ng-include="'columntemplate'">{{n}}</div>  
   </div>
 </script>
 
 <div style="margin-top:20px;">
-  <div ng-repeat="m in test.arr" ng-include="'rowtemplate'">{{m}}</div>
+  <div ng-repeat="m in rowColIndex.arr" ng-include="'rowtemplate'">{{m}}</div>
 </div>
 
 <button ng-click="clickme()">Click me</button>

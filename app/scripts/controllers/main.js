@@ -10,28 +10,33 @@
 angular.module('mindgamesApp')
   .controller('MainCtrl', function ($scope) {
     
-    var masterIndex = 0;
-    var rowColCount = 2
+    var imagesIndexArr = 0;
+    var map = {};
+    var images = ['batman.gif',
+                  'courage.gif',
+                  'dexter.gif',
+                  'calvinhobbes.jpeg',
+                  'captainplanet.gif',
+                  'dragonballz.gif',
+                  'popeye.gif',
+                  'swatkats.gif',
+                  'tom&jerry.gif'
+                    ];
 
-    var map = {
-    	'0' : 'batman.gif',
-    	'1' : 'courage.gif',
-    	'2' : 'dexter.gif',
-    	'3' : 'calvinhobbes.jpeg',
-    	'4' : 'captainplanet.gif',
-    	'5' : 'dragonballz.gif',
-    	'6' : 'popeye.gif',
-    	'7' : 'swatkats.gif',
-    	'8' : 'tom&jerry.gif'
-    };
+    function createMap() {
+        var arr = shuffleArray(images);
+        for(var i=0;i<arr.length;i++) map[i] = arr[i];
+    }
 
     function init() {
-        $scope.max = 1;
         $scope.master = [];
-        $scope.arrNum = [0, 1, 2, 3];
-        $scope.test = {};
-        $scope.test.arr = [0,1];
-        var arr = shuffleArray($scope.arrNum);
+        $scope.imagesIndexArr = [0, 1, 2, 3];
+        $scope.rowColIndex = {};
+        $scope.rowColIndex.arr = [0,1];
+        $scope.max = $scope.rowColIndex.arr.length;
+
+        createMap();
+        var arr = shuffleArray($scope.imagesIndexArr);
         create2DArray(arr);
     }
 
@@ -39,15 +44,6 @@ angular.module('mindgamesApp')
     	var containersArr = shuffleArray($('.main_container .main_card'));
     	flipImages(containersArr, 0);
     }
-
-    $scope.range = function(min, max, step){
-	    step = step || 1;
-	    var input = [];
-	    for (var i = min; i <= max; i += step) {
-	    	input.push(i);
-	    }
-	    return input;
-  	};
 
     function shuffleArray(arr) {
     	var len = arr.length;
@@ -66,16 +62,15 @@ angular.module('mindgamesApp')
     function create1DArray() {
         var arr = [];
         $scope.$apply(function() {
-            $scope.test.arr = arr;
+            $scope.rowColIndex.arr = arr;
         })
-        var arrNum = [];
-    	var len = rowColCount;
-    	for(var i=0;i<len;i++) arr.push(i);
-    	for(var i=0;i<len * len;i++) arrNum.push(i);
+        var imagesIndexArr = [];
+    	for(var i=0;i<$scope.max;i++) arr.push(i);
+    	for(var i=0;i<$scope.max * $scope.max;i++) imagesIndexArr.push(i);
 
-        $scope.arrNum = arrNum;
+        $scope.imagesIndexArr = imagesIndexArr;
         $scope.$apply(function() {
-            $scope.test.arr = arr;
+            $scope.rowColIndex.arr = arr;
         })
 
     }
@@ -85,9 +80,9 @@ angular.module('mindgamesApp')
     	var count = 0;
     	$scope.master = [];
 
-    	for(var i=0;i<=$scope.max;i++) {
+    	for(var i=0;i<$scope.max;i++) {
     		var arr = [];
-    		for(var j=0;j<=$scope.max;j++) {
+    		for(var j=0;j<$scope.max;j++) {
     			arr.push(map[shuffledArray[count++]]);
     		}
     		$scope.master.push(arr);
@@ -106,8 +101,7 @@ angular.module('mindgamesApp')
                 var currName = $('#dragDropImg').find('img').attr("name");
                 var selectedName = $(this).attr("name");
                 if(currName == selectedName) {
-                    alert("success");
-                    masterIndex++;
+                    imagesIndexArr++;
                     renderDraggableImage();
                 }
                 else alert("failure");
@@ -121,16 +115,15 @@ angular.module('mindgamesApp')
     }
 
     function renderDraggableImage() {
-    	if(masterIndex == $scope.arrNum.length) {
+    	if(imagesIndexArr == $scope.imagesIndexArr.length) {
     		$scope.max++;
-    		masterIndex = 0;
-    		rowColCount++;
+    		imagesIndexArr = 0;
     		create1DArray();
-    		var arr = shuffleArray();
+    		var arr = shuffleArray($scope.imagesIndexArr);
    			create2DArray(arr);
     	}
-    	$('#dragDropImg').find('img').attr("src","images/" + map[masterIndex]);
-    	$('#dragDropImg').find('img').attr("name", map[masterIndex])
+    	$('#dragDropImg').find('img').attr("src","images/" + map[imagesIndexArr]);
+    	$('#dragDropImg').find('img').attr("name", map[imagesIndexArr])
     }
 
     init();
