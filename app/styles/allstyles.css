@@ -36,3 +36,20 @@
   color: white;
   text-align: center;
 }
+
+.gridimages {
+    border-radius: 25px;
+    border: 2px solid #8AC007;
+    padding: 20px; 
+    width: 200px;
+    height: 150px;     
+}
+
+.gridimagescontainer{
+  padding-right : 190px;
+}
+
+.imageclick {
+  left: 500px;
+  -webkit-transition: 1s;
+}

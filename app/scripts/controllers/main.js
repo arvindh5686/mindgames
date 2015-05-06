@@ -63,7 +63,7 @@ angular.module('mindgamesApp')
         var arr = [];
         $scope.$apply(function() {
             $scope.rowColIndex.arr = arr;
-        })
+        });
         var imagesIndexArr = [];
     	for(var i=0;i<$scope.max;i++) arr.push(i);
     	for(var i=0;i<$scope.max * $scope.max;i++) imagesIndexArr.push(i);
@@ -98,13 +98,17 @@ angular.module('mindgamesApp')
     	}
 
         $(containersArr[index]).click(function() {
-                var currName = $('#dragDropImg').find('img').attr("name");
-                var selectedName = $(this).attr("name");
-                if(currName == selectedName) {
+
+                var currName = $('#dragDropImg').find('img').attr('name');
+                var selectedName = $(this).attr('name');
+                if(currName === selectedName) {
+                    $('#dragDropImg').find('img').addClass('imageclick');
+                    var degree = (index + 1) * 360;
+                    $('#dragDropImg').find('img').css('-webkit-transform', 'rotateZ(' + degree + 'deg)');
                     imagesIndexArr++;
                     renderDraggableImage();
                 }
-                else alert("failure");
+                else alert('failure');
         });
 
     	$(containersArr[index]).css('transform', 'rotateY(180deg)');
@@ -116,14 +120,16 @@ angular.module('mindgamesApp')
 
     function renderDraggableImage() {
     	if(imagesIndexArr == $scope.imagesIndexArr.length) {
-    		$scope.max++;
+            $('#dragDropImg').find('img').attr("src","");
+    		if($scope.max < 3) $scope.max++;
     		imagesIndexArr = 0;
     		create1DArray();
     		var arr = shuffleArray($scope.imagesIndexArr);
    			create2DArray(arr);
-    	}
-    	$('#dragDropImg').find('img').attr("src","images/" + map[imagesIndexArr]);
-    	$('#dragDropImg').find('img').attr("name", map[imagesIndexArr])
+    	} else {
+            $('#dragDropImg').find('img').attr("src","images/" + map[imagesIndexArr]);
+            $('#dragDropImg').find('img').attr("name", map[imagesIndexArr])
+        }
     }
 
     init();
