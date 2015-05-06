@@ -34,6 +34,7 @@ angular.module('mindgamesApp')
         $scope.rowColIndex = {};
         $scope.rowColIndex.arr = [0,1];
         $scope.max = $scope.rowColIndex.arr.length;
+        $scope.disabled = false;
 
         createMap();
         var arr = shuffleArray($scope.imagesIndexArr);
@@ -41,6 +42,7 @@ angular.module('mindgamesApp')
     }
 
     $scope.clickme = function() {
+        $scope.disabled = true;
     	var containersArr = shuffleArray($('.main_container .main_card'));
     	flipImages(containersArr, 0);
     }
@@ -120,6 +122,7 @@ angular.module('mindgamesApp')
 
     function renderDraggableImage() {
     	if(imagesIndexArr == $scope.imagesIndexArr.length) {
+            $scope.disabled = false;
             $('#dragDropImg').find('img').attr("src","");
     		if($scope.max < 3) $scope.max++;
     		imagesIndexArr = 0;

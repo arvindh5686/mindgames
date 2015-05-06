@@ -3,7 +3,7 @@
       <div id="image{{m}}{{n}}" name="{{master[m][n]}}" class="main_container">
       <div class="main_card" name="{{master[m][n]}}" class="shadow">
         <div class="face gridimages">
-          <p>Flip style</p>{{master[m][n]}} 
+          {{m}}{{n}} 
         </div>
         <div class="back face">
           <img src="images/{{master[m][n]}}" height="150" width="150"/>
@@ -23,7 +23,7 @@
   <div ng-repeat="m in rowColIndex.arr" ng-include="'rowtemplate'">{{m}}</div>
 </div>
 
-<button ng-click="clickme()">Click me</button>
+<button ng-disabled="disabled" class="btn" ng-click="clickme()">Click me</button>
 
 <div id="dragDropImg" style="margin-top:20px;">
   <img src="" height="150" width="150"/>
