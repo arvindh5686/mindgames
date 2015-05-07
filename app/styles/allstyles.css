@@ -16,11 +16,12 @@
   transform-style: preserve-3d;
   transition: all 1.0s linear;
 }
-
+/*
 .main_container:hover .main_card {
   transform: rotateY(180deg);
   box-shadow: -5px 5px 5px #aaa;
 }
+*/
 
 .face {
   position: absolute;
