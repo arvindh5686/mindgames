@@ -1,6 +1,6 @@
 # mindgames
 
-A fun game that tests how well you can remember...
+A fun game that will test how well you can remember stuff...
 
 ## Build & development
 
