@@ -2,6 +2,8 @@
 
 A fun game that will test how well you can remember stuff...
 
+https://mind-games.herokuapp.com/
+
 ## Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
