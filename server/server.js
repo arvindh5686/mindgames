@@ -13,7 +13,7 @@ var server = exports.server = express();
 
 // Configure Server
 server.configure( function() {
-    server.set( 'port', 9000 );
+    server.set( 'port', process.env.PORT || 9000 );
     console.log(path.join( __dirname, './../app' ));
     server.set( 'views', path.join( __dirname, './../app' ) );
 
