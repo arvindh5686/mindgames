@@ -4,7 +4,8 @@
   "dependencies": {},
   "repository": {},
   "dependencies": {
-    "express": "~3.2.4"
+    "express": "~3.2.4",
+    "bower": "1.4.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
