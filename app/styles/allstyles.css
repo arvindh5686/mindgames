@@ -33,7 +33,7 @@
   display: block;
   transform: rotateY(180deg);
   box-sizing: border-box;
-  
+
   color: white;
   text-align: center;
 }
@@ -41,9 +41,13 @@
 .gridimages {
     border-radius: 25px;
     border: 2px solid #8AC007;
-    padding: 20px; 
+    padding: 20px;
     width: 200px;
-    height: 150px;     
+    height: 150px;
+}
+
+.img-card {
+    border-radius: 35px 35px 35px 35px;
 }
 
 .gridimagescontainer{
